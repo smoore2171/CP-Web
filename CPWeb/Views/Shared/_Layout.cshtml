@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <link href="~/Images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="/Content/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="/Content/css/main.css"></link>
+        <!---<link rel="stylesheet" href="/Content/jquery.dataTables.css"></link> -->
+        <SCRIPT type="text/javascript" src="/Content/jquery.js">
+		</SCRIPT>
+        <SCRIPT type="text/javascript" src="/Content/jquery.dataTables.min.js">
+		</SCRIPT>
+		<SCRIPT type="text/javascript" src="/Content/bootstrap.min.js">
+		</SCRIPT>
+    </head>
+	<body>
+        <div id="wrapper" style="min-height:800px;">
+            <div id="content" class="clearfix">
+                <div class="contentwrapper"><!--Content wrapper-->
+                    <div class="heading">
+                    	<div id="logindisplay">
+			                @Html.Partial("_LogOnPartial")
+			            </div>
+                        <h2 id="title">Criminal Procedure Web Portal</h2>
+                        <div class="nav">
+
+                        	<ul>
+                        	@if (!Request.IsAuthenticated && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().ToLower() == "home" || HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().ToLower() != "account"))
+           					 {
+								<li>@Html.ActionLink("Log in", "LogOn", "Account")</li>
+                            	<li>@Html.ActionLink("Sign up", "Register", "Account")</li>
+                            }
+                            else if(Roles.IsUserInRole(User.Identity.Name, "Student"))
+                            {
+                            	<li>@Html.ActionLink("Assessments", "Index", "Student")</li>
+                            }
+                            else if(Roles.IsUserInRole(User.Identity.Name, "Admin"))
+                            {
+                            	<li>@Html.ActionLink("Home", "Index", "Admin")</li>
+                            	<li>@Html.ActionLink("Student Progress", "Students", "Admin")</li>
+                            	<li>@Html.ActionLink("Citation Editor", "Citation", "Admin")</li>
+                            }
+                        	</ul>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        @RenderSection("featured", required: false)
+                        <section class="content-wrapper main-content clear-fix">
+                            @RenderBody()
+                        </section>
+                    </div>
+                    <footer>
+  			
+				          <div class="footer_msu"> <a href="http://msu.edu"><img height="35" width="171" src="http://www.msu.edu/_files/images/foot/logo_main.gif" alt="Michigan State University"></a> </div>
+				          <div class="footer_text">&copy; Michigan State University Board of Trustees. East Lansing, MI 48824<br>
+				            MSU is an affirmative-action, equal-opportunity employer.<br>
+				          </div>
+                    </footer><!-- #footer -->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+

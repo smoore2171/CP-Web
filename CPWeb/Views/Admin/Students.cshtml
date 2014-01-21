@@ -1,0 +1,50 @@
+@model IEnumerable<CPWeb.assessmentVM>
+<div>
+    <h2>Student Progress</h2>
+	<br/>
+	<table class="datatable display table table-bordered dataTable">
+		<thead>
+			<th>Name</th>
+			<th>Scene</th>
+			<th>First Score</th>
+			<th>Updated Score</th>
+			<th>Average Score</th>
+			<th>Actions</th>
+		</thead>
+		<tbody>
+		@foreach(CPWeb.assessmentVM s in Model)
+		{
+			<tr>
+				<td>@s.assessment.Student.name</td>
+				<td>@s.assessment.scene.id:  @s.assessment.scene.name</td>
+				<td>@s.firstScore</td>
+				<td>@s.assessment.score</td>
+				<td>@s.averageScore</td>
+				<td><div class="btn-group"><button data-toggle="dropdown" class="btn btn-primary dropdown-primary">
+					<span class="icon-wrench icon-white"></span> Actions</button>
+					<button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
+					<span class="caret"></span></button><ul class="dropdown-menu">
+					<li><a href="/Admin/UpdateStudent/@s.assessment.Student.id"><i class="icomoon-icon-pencil"></i> Edit Student</a></li>
+					<li><a href="/Admin/Assessments/@s.assessment.id"><i class="icomoon-icon-locked-2"></i> View Attempts</a></li></ul></div></td>
+			</tr>
+		}
+		</tbody>
+	</table>
+
+
+	<script>
+		 $(document).ready(function() { 	                   
+    var oTable = $('.datatable').dataTable({
+        "sPaginationType": "full_numbers",
+        "bJQueryUI": false,
+        "bAutoWidth": false,
+        "bLengthChange": false,
+        "iDisplayLength": 15,
+        "fnInitComplete": function(oSettings, json) {
+            $('.dataTables_filter>label>input').attr('id', 'search');
+        },
+    });
+	});
+	</script>
+</div>
+

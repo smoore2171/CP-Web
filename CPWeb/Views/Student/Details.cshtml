@@ -1,0 +1,42 @@
+@model IEnumerable<CPWeb.AssessmentDetail>
+<div>
+    <h2>Assessment Details</h2>
+	<br/>
+	<span><b>Scene: 
+	@if(Model.Count() > 0)
+	{
+		@:@Model.First().Assessment.scene.name
+	}</b></span>
+	<br/>
+	<span><b>Date Submitted: 
+	@if(Model.Count() > 0)
+	{
+		@:@Model.First().Assessment.date.ToShortDateString()
+	}</b></span>
+	<br/><br/>
+	<table class="datatable display table table-bordered dataTable">
+		<thead>
+			<th>Description</th>
+			<th>Points</th>
+		</thead>
+		<tbody>
+		@foreach(CPWeb.AssessmentDetail s in Model)
+		{
+			<tr>
+				<td>@s.description</td>
+				<td>@s.points</td>
+			</tr>
+		}
+		</tbody>
+	</table>
+
+	<span><b>Total Score: 
+	@if(Model.Count() > 0)
+	{
+		@:@Model.First().Assessment.score
+	}</b></span>
+
+
+</div>
+
+    

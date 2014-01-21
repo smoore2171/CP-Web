@@ -1,0 +1,22 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="CPWeb\Web.config">
+    <Files>
+      <File FileName="CPWeb\Models\DataContext.cs" Line="1" Column="1" />
+      <File FileName="CPWeb\DataMigrations\DataMigrations.cs" Line="1" Column="1" />
+      <File FileName="CPWeb\Web.config" Line="95" Column="16" />
+      <File FileName="CPWeb\Models\TestModel.cs" Line="1" Column="1" />
+      <File FileName="CPWeb\Global.asax.cs" Line="1" Column="1" />
+      <File FileName="CPWeb\Migrations\201312131355374_Migration1.Designer.cs" Line="1" Column="1" />
+      <File FileName="CPWeb\Migrations\201312131355374_Migration1.resx" Line="1" Column="1" />
+      <File FileName="CPWeb\Migrations\201312131355374_Migration1.cs" Line="1" Column="1" />
+      <File FileName="CPWeb\Controllers\HomeController.cs" Line="1" Column="1" />
+      <File FileName="CPWeb\Views\Home\Index.cshtml" Line="1" Column="1" />
+      <File FileName="CPWeb\Views\Web.config" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

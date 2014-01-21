@@ -1,0 +1,41 @@
+@model CPWeb.FeedbackVM
+<div>
+    <h2>Feedback:</h2>
+	<br/>
+	@foreach(CPWeb.Feedback fb in Model.feedback)
+	{
+		if(fb.user == fb.Assessment.Student.userName)
+		{
+			// left align
+			<div class="feedback studentFeedback">
+				<p>@fb.feedback</p>
+				<br/>
+				<span class="dateName">@fb.user - @fb.date.ToShortDateString()</span>
+			</div>
+		}
+		else
+		{
+			<div class="feedback teacherFeedback">
+				<p>@fb.feedback</p>
+				<br/>
+				<span class="dateName">@fb.user - @fb.date.ToShortDateString()</span>
+			</div>
+		}
+	}
+	<div style="clear: both;"></div>
+	<br/><br/>
+	<span>Response:</span>
+    @using (Html.BeginForm("AddFeedback", "Admin", FormMethod.Post, new {  })) {
+         	@Html.HiddenFor(vm => vm.assessment.id)
+		    <div class="row-fluid">
+		        <div class="span6">
+		            @Html.TextAreaFor(vm => vm.response.feedback)
+		        </div>
+		        <br/>
+		        <input type="submit" class="btn btn-primary" value="Submit Feedback"/>
+		    </div>
+    }
+
+</div>
+
+    

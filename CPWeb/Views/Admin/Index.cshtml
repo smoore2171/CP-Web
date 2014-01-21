@@ -1,0 +1,45 @@
+@model IEnumerable<CPWeb.Student>
+<div>
+    <h2>Student Info</h2>
+	<br/>
+	<table class="datatable display table table-bordered dataTable">
+		<thead>
+			<th>Name</th>
+			<th>Last Scene Completed</th>
+		</thead>
+		<tbody>
+		@foreach(CPWeb.Student s in Model)
+		{
+			<tr>
+				<td>@s.name</td>
+				<td>
+				@if(s.assessments.Count() > 0)
+				{
+					@:@s.assessments.OrderByDescending(v => v.scene.id).First().scene.id</td>
+				}
+				else
+				{
+					@:0</td>
+				}
+			</tr>
+		}
+		</tbody>
+	</table>
+
+
+	<script>
+		 $(document).ready(function() { 	                   
+    var oTable = $('.datatable').dataTable({
+        "sPaginationType": "full_numbers",
+        "bJQueryUI": false,
+        "bAutoWidth": false,
+        "bLengthChange": false,
+        "iDisplayLength": 15,
+        "fnInitComplete": function(oSettings, json) {
+            $('.dataTables_filter>label>input').attr('id', 'search');
+        },
+    });
+	});
+	</script>
+</div>
+
