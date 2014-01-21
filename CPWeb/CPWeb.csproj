@@ -113,6 +113,7 @@
     <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Migrations\201401201803405_Migration5.cs" />
     <Compile Include="Migrations\201401201803405_Migration5.Designer.cs" />
+    <Compile Include="ViewModels\studentVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -132,13 +133,11 @@
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <Content Include="Views\Account\LogOn.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Content\jquery.dataTables.css" />
     <Content Include="Content\jquery.dataTables.min.js" />
     <Content Include="Content\jquery.js" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
-    <Content Include="Views\Admin\Students.cshtml" />
     <Content Include="Views\Admin\Citation.cshtml" />
     <Content Include="Migrations\201312191302052_Migration2.resx" />
     <Content Include="Migrations\201312191425535_Migration3.resx" />
@@ -150,6 +149,9 @@
     <Content Include="Views\Admin\Details.cshtml" />
     <Content Include="Views\Admin\UpdateCitation.cshtml" />
     <Content Include="Migrations\201401201803405_Migration5.resx" />
+    <Content Include="Views\Admin\Student.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\AddCitation.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

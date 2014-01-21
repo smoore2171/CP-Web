@@ -1,7 +1,7 @@
 @model IEnumerable<CPWeb.Citation>
 <div>
     <h2>Citations</h2>
-	<br/>
+<br/>
 	<table class="datatable display table table-bordered dataTable">
 		<thead>
 			<th>Scene</th>
@@ -20,12 +20,14 @@
 					<span class="icon-wrench icon-white"></span> Actions</button>
 					<button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
 					<span class="caret"></span></button><ul class="dropdown-menu">
-					<li><a href="/Admin/UpdateCitation/@s.id"><i class="icomoon-icon-pencil"></i> Edit Citation</a></li></ul></div></td>
+					<li><a href="/Admin/UpdateCitation/@s.id"><i class="icomoon-icon-pencil"></i> Edit Citation</a></li>
+					<li><a href="/Admin/DeleteCitation/@s.id"><i class="icomoon-icon-pencil"></i> Delete Citation</a></li></ul></div></td>
 			</tr>
 		}
 		</tbody>
 	</table>
-
+<br/><br/><br/>
+		<a class="btn btn-primary" href="/Admin/AddCitation/">Add Citation</a>
 
 	<script>
 		 $(document).ready(function() { 	                   

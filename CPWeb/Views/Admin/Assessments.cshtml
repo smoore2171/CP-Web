@@ -14,7 +14,11 @@
 		{
 			<tr>
 				<td>@s.scene.id: @s.scene.name</td>
-				<td>@s.score</td>
+				<td>@s.score @if(Model.OrderByDescending(v => v.date).Where(r => r.scene == s.scene).Count() > 0 && Model.OrderByDescending(v => v.date).Where(r => r.scene == s.scene).ToList().IndexOf(s) != Model.OrderByDescending(v => v.date).Where(r => r.scene == s.scene).Count()-1)
+				{
+					@:<span style="color:green">(updated score)</span>
+				}
+				</td>
 				<td>@s.date.ToShortDateString()</td>
 				<td><div class="btn-group"><button data-toggle="dropdown" class="btn btn-primary dropdown-primary">
 					<span class="icon-wrench icon-white"></span> Actions</button>

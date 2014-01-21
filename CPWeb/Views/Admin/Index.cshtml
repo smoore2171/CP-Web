@@ -1,26 +1,35 @@
-@model IEnumerable<CPWeb.Student>
+@model IEnumerable<CPWeb.studentVM>
 <div>
-    <h2>Student Info</h2>
+    <h2>Students</h2>
 	<br/>
 	<table class="datatable display table table-bordered dataTable">
 		<thead>
 			<th>Name</th>
 			<th>Last Scene Completed</th>
+			<th>Average Score</th>
+			<th>Actions</th>
 		</thead>
 		<tbody>
-		@foreach(CPWeb.Student s in Model)
+		@foreach(CPWeb.studentVM s in Model)
 		{
 			<tr>
-				<td>@s.name</td>
+				<td>@s.student.name</td>
 				<td>
-				@if(s.assessments.Count() > 0)
+				@if(s.student.assessments.Count() > 0)
 				{
-					@:@s.assessments.OrderByDescending(v => v.scene.id).First().scene.id</td>
+					@:@s.student.assessments.OrderByDescending(v => v.scene.id).First().scene.id</td>
 				}
 				else
 				{
 					@:0</td>
 				}
+				<td>@s.averageScore</td>
+				<td><div class="btn-group"><button data-toggle="dropdown" class="btn btn-primary dropdown-primary">
+					<span class="icon-wrench icon-white"></span> Actions</button>
+					<button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
+					<span class="caret"></span></button><ul class="dropdown-menu">
+					<!---<li><a href="/Admin/UpdateStudent/@s.student.id"><i class="icomoon-icon-pencil"></i> Edit Student</a></li>-->
+					<li><a href="/Admin/Assessments/@s.student.id"><i class="icomoon-icon-locked-2"></i> View Assessments</a></li></ul></div></td>
 			</tr>
 		}
 		</tbody>

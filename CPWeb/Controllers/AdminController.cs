@@ -13,7 +13,7 @@ namespace CPWeb.Controllers
 
         public ActionResult Index()
         {
-			List<Student> students = db.students.ToList();
+			/*List<Student> students = db.students.ToList();
 
 			// eager load information needed for view
 			foreach (Student s in students)
@@ -25,7 +25,41 @@ namespace CPWeb.Controllers
 				}
 			}
 
-			return View (students);
+			return View (students);*/
+
+			List<Student> students = db.students.ToList();
+
+			List<studentVM> studentVMs = new List<studentVM> ();
+
+			foreach (Student s in students)
+			{
+				// foreach scene...
+				foreach (Scene n in db.scenes.ToList())
+				{
+					if (s.assessments.Where (v => v.scene == n).Count() < 1)
+					{
+						continue;
+					}
+					studentVM vm = new studentVM ();
+					vm.student = s;
+					//vm.firstScore = s.assessments.Where (v => v.scene == n).OrderBy (v => v.date).First ().score;
+
+					int totalScore = 0;
+					int count = 0;
+					foreach (Assessment f in s.assessments.Where (v => v.scene == n))
+					{
+						count++;
+						totalScore += f.score;
+					}
+
+					vm.averageScore = totalScore / count;
+
+					studentVMs.Add (vm);
+
+				}
+			}
+
+			return View (studentVMs);
         }
 
 		public ActionResult Students()
@@ -112,11 +146,10 @@ namespace CPWeb.Controllers
 		/// <param name="id">Identifier.</param>
 		public ActionResult Assessments(int id)
 		{
-			int sceneId = db.assessments.Where (v => v.id == id).Single ().scene.id;
-			int studentId = db.assessments.Where (v => v.id == id).Single ().Student.id;
+			Student s = db.students.Where (v => v.id == id).Single ();
 
 			// get assessments
-			List<Assessment> assessments = db.assessments.Where (v => v.scene.id == sceneId && v.Student.id == studentId).ToList ();
+			List<Assessment> assessments = db.assessments.Where (v => v.Student.id == s.id).ToList ();
 
 			return View (assessments);
 
@@ -134,6 +167,56 @@ namespace CPWeb.Controllers
 
 			return View (citation);
 		}
+
+		/// <summary>
+		/// Adds a citation.
+		/// </summary>
+		/// <returns>The citation.</returns>
+		/// <param name="id">Identifier.</param>
+		public ActionResult AddCitation()
+		{
+			return View (new Citation());
+		}
+
+		/// <summary>
+		/// Updates the citation.
+		/// </summary>
+		/// <returns>The citation.</returns>
+		/// <param name="id">Identifier.</param>
+		[HttpPost]
+		public ActionResult AddCitation(Citation citation)
+		{
+			int sceneId = Int32.Parse(Request.Form["scene.id"]);
+			Citation cit = new CPWeb.Citation ();
+
+			cit.citation = Request.Form["citation"];
+			cit.scene = db.scenes.Where (s => s.id == sceneId).Single ();
+			cit.title = Request.Form["title"];
+
+			db.citation.Add (cit);
+
+			db.SaveChanges ();
+
+			return RedirectToAction ("Citation");
+		}
+
+
+		/// <summary>
+		/// Deletes the citation.
+		/// </summary>
+		/// <returns>The citation.</returns>
+		/// <param name="id">Identifier.</param>
+		public ActionResult DeleteCitation(int id)
+		{
+			Citation cit = db.citation.Where (v => v.id == id).Single ();
+
+			db.citation.Remove (cit);
+
+			db.SaveChanges ();
+
+			return RedirectToAction ("Citation");
+		}
+
 
 
 		/// <summary>

@@ -78,6 +78,8 @@ namespace CPWeb.Controllers
 		[HttpPost]
 		public string SubmitAssessment(Assessment assessment)
 		{
+			// should be over ssl
+
 			try
 			{
 				Student s = db.students.Where (a => a.userName == assessment.Student.userName).Single ();

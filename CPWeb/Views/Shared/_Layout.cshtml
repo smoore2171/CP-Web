@@ -38,8 +38,8 @@
                             }
                             else if(Roles.IsUserInRole(User.Identity.Name, "Admin"))
                             {
-                            	<li>@Html.ActionLink("Home", "Index", "Admin")</li>
-                            	<li>@Html.ActionLink("Student Progress", "Students", "Admin")</li>
+                            	<li>@Html.ActionLink("Students", "Index", "Admin")</li>
+                            	<!--<li>@Html.ActionLink("Student Progress", "Students", "Admin")</li>-->
                             	<li>@Html.ActionLink("Citation Editor", "Citation", "Admin")</li>
                             }
                         	</ul>
